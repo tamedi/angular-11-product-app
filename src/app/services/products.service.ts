@@ -28,7 +28,7 @@ export class ProductsService {
   }
   select(product:Product):Observable<Product>{
     let host=environment.host;
-    product.selected=!product.selected;
+    product.selected=!product.selected;//si selected == true elle devient false et vis versa
     return this.http.put<Product>(host+"/products/"+product.id,product);
   }
   deleteProduct(product:Product):Observable<void>{

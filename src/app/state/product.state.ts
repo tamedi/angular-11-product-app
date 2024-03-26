@@ -6,6 +6,6 @@ export enum DataStateEnum {
 
 export interface AppDataState<T> {
   dataState:DataStateEnum,
-  data?:T,
+  data?:T, // le ? : pour dire que sa présence dans l'objet n'est pas obligatoire
   errorMessage?:string
 }

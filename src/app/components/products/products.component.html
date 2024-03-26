@@ -28,6 +28,12 @@
   </ul>
 </nav>
 <div class="container">
+  <!--
+  Définissez un conteneur avec la directive *ngSwitch et attribuez-lui une expression à évaluer.
+  Utilisez des éléments enfants avec la directive *ngSwitchCase pour chaque option possible de l'expression évaluée.
+  result : permet de retournerner un objet de type : AppDataState qui contient : dataState , data (Product) , errorMessage
+  ngTemplate je l'utilise dans le cas de if else
+  -->
   <ng-container *ngIf="(products$ | async) as result" [ngSwitch]="result.dataState" >
     <ng-container *ngSwitchCase="DataStateEnum.LOADING">
       Loading .....

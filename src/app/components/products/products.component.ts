@@ -13,6 +13,9 @@ import {Router} from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
    products$:Observable<AppDataState<Product[]>> |null=null;
+   //vous créez une propriété DataStateEnum qui est une copie de l'énumération DataStateEnum, mais en lecture seule.
+   // Cela signifie que vous pouvez accéder à cette énumération depuis l'extérieur de la classe où elle est déclarée, mais vous ne pouvez pas la modifier.
+   //comme ça je peux l'utiler dans le html L36 L39et L44
    readonly DataStateEnum=DataStateEnum;
 
    constructor(private productsService:ProductsService, private router:Router) { }
@@ -26,7 +29,11 @@ export class ProductsComponent implements OnInit {
           console.log(data);
           return ({dataState:DataStateEnum.LOADED,data:data})
         }),
+        //L'opérateur startWith est utilisé pour émettre une valeur initiale immédiatement après la souscription à l'Observable. Cela signifie que cette valeur est émise dès que l'Observable est activé.
         startWith({dataState:DataStateEnum.LOADING}),
+        //L'opérateur catchError est utilisé pour intercepter les erreurs qui se produisent pendant la récupération des données.
+        // Si une erreur se produit, cette fonction de capture d'erreur est déclenchée. La variable err contient l'erreur qui s'est produite.
+        //L'opérateur of est utilisé pour émettre une nouvelle valeur Observable, qui est un objet avec l'état d'erreur et le message d'erreur.
         catchError(err=>of({dataState:DataStateEnum.ERROR, errorMessage:err.message}))
       );
   }
@@ -67,7 +74,7 @@ export class ProductsComponent implements OnInit {
   onSelect(p: Product) {
     this.productsService.select(p)
       .subscribe(data=>{
-        p.selected=data.selected;
+        p.selected=data.selected; // une fois que je recupère data je ne change que l'attribut p et ça ne recharge pas toute la page
       })
   }
 
