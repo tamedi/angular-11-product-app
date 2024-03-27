@@ -1,1 +1,34 @@
-<p>products-list works!</p>
+<div class="container">
+  <!--
+  Définissez un conteneur avec la directive *ngSwitch et attribuez-lui une expression à évaluer.
+  Utilisez des éléments enfants avec la directive *ngSwitchCase pour chaque option possible de l'expression évaluée.
+  result : permet de retournerner un objet de type : AppDataState qui contient : dataState , data (Product) , errorMessage
+  ngTemplate je l'utilise dans le cas de if else
+  -->
+  <ng-container *ngIf="(productsInput$ | async) as result" [ngSwitch]="result.dataState" >
+    <ng-container *ngSwitchCase="DataStateEnum.LOADING">
+      Loading .....
+    </ng-container>
+    <ng-container *ngSwitchCase="DataStateEnum.ERROR">
+      <div class="alert-danger">
+        {{result.errorMessage}}
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="DataStateEnum.LOADED">
+      <table class="table">
+        <tr>
+          <th>ID</th><th>Name</th><th>Price</th><th>Quantity</th><th>Selected</th><th>Available</th>
+        </tr>
+        <!-- les ligne à l'intérieur du tableau -->
+        <app-product-item
+          [product]="p"
+          (eventEmitter)="onActionEvent($event)"
+          *ngFor="let p of result.data"
+          style="display: contents"><!-- display:content c'est pour dire que ce qui est à l'intérieur de app-product-item il doit afficher son contenu -->
+
+        </app-product-item>
+
+      </table>
+    </ng-container>
+  </ng-container>
+</div>
