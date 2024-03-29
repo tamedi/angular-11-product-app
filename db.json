@@ -5,7 +5,7 @@
       "name": "Computer",
       "price": 4300,
       "quantity": "1",
-      "selected": false,
+      "selected": true,
       "available": true
     },
     {
@@ -19,6 +19,14 @@
     {
       "id": 3,
       "name": "azerty",
+      "price": 0,
+      "quantity": 0,
+      "selected": true,
+      "available": true
+    },
+    {
+      "id": 4,
+      "name": "aaaaaaaaaaa",
       "price": 0,
       "quantity": 0,
       "selected": true,

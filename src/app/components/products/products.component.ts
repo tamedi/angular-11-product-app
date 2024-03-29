@@ -5,6 +5,7 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, startWith} from 'rxjs/operators';
 import {ActionEvent, AppDataState, DataStateEnum, ProductActionsTypes} from '../../state/product.state';
 import {Router} from '@angular/router';
+import {EventDriverService} from '../../state/event.driver.service';
 
 @Component({
   selector: 'app-products',
@@ -18,9 +19,13 @@ export class ProductsComponent implements OnInit {
    //comme ça je peux l'utiler dans le html L36 L39et L44
    readonly DataStateEnum=DataStateEnum;
 
-   constructor(private productsService:ProductsService, private router:Router) { }
+   constructor(private productsService:ProductsService, private router:Router, private eventDrivenService:EventDriverService) { }
 
   ngOnInit(): void {
+     //c'est une façon de dire au composant des que tu démarre écoute moi ce qui se passee dans l'observable et des quil recoit les evenement il va les traiter dans onActionEvent en lui passant comme param : actionEvent
+    this.eventDrivenService.sourceEventSubjectObservable.subscribe((actionEvent:ActionEvent)=>{
+      this.onActionEvent(actionEvent);
+    });
   }
 
   onGetAllProducts() {

@@ -7,6 +7,8 @@ export enum ProductActionsTypes{
   SELECT_PRODUCT="[Product] SElect product",
   EDIT_PRODUCT="[Product] Edit product",
   DELETE_PRODUCT="[Product] Delete product",
+  PRODUCT_ADDED="[Product] product added",//je les ai ajouter pour le composant stats pour incrementer quand j'ajoute un composant
+  PRODUCT_UPDATED="[Product] product updated",
 }
 export interface ActionEvent {
   type:ProductActionsTypes,
