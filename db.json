@@ -5,7 +5,7 @@
       "name": "Computer",
       "price": 4300,
       "quantity": "99999",
-      "selected": true,
+      "selected": false,
       "available": true
     },
     {

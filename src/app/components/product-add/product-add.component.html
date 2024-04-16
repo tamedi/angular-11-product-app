@@ -1,14 +1,14 @@
-<div class="container" *ngIf="productFormGroup">
+<div class="container" *ngIf="productFormGroup"> <!-- on ne crée le formulaire que une fois l'obget : productFormGroup est créer qui est dans la méthode ngOnInit (objet) -->
   <form [formGroup]="productFormGroup">
     <div class="form-group">
       <label>Name</label>
       <!-- Pour implementer les validators -->
-      <!-- Si le champs name contient des erreurs : je le met en invalid -->
+      <!-- Si le champs name contient des erreurs : je le met en class invalid -->
       <input type="text" class="form-control" formControlName="name"
              [ngClass]="{'is-invalid':submitted && productFormGroup.controls.name.errors}">
       <!-- et j'affiche e message d'erreur -->
       <div *ngIf="submitted && productFormGroup.controls.name.errors" class="invalid-feedback">
-        <!-- j'affiche le message : Name is Required -->
+        <!-- si l'erreur concerne le validator required :j'affiche le message : Name is Required -->
         <div *ngIf="productFormGroup.controls.name.errors.required">Name is Required</div>
       </div>
 

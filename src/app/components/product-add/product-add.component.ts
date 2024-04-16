@@ -25,7 +25,7 @@ export class ProductAddComponent implements OnInit {
   }
 
   onSaveProduct() {
-    this.submitted=true;
+    this.submitted=true; // une fois je click sur le bouton ça passe a true
     if(this.productFormGroup?.invalid) return; // le return veut dire je ne fais pas ce qui est en dessous cad j'appelle pas le service
     this.productsService.save(this.productFormGroup?.value)
       .subscribe(data=>{

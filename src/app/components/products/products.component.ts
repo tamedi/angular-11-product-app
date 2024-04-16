@@ -60,6 +60,7 @@ export class ProductsComponent implements OnInit {
     );
   }
 
+  //dataForm est un objet contenant les valeurs des champs du formulaire. Dans ce cas, dataForm.keyword récupère la valeur du champ de saisie du mot-clé de recherche.
   onSearch(dataForm: any) {
     this.products$= this.productsService.searchProducts(dataForm.keyword).pipe(
       map(data=>{
